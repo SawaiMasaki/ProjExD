@@ -15,7 +15,7 @@ def main():
             print("完全正解！. おめでとう！")
             break
         pro_time()
-
+    
 #出題する関数
 def quiz():
     alphabet = [chr(num+65) for num in range(26)]
