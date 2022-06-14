@@ -14,7 +14,7 @@ def main():
         if hantei == 1:
             print("完全正解！. おめでとう！")
             break
-        pro_time()
+        pro_time()  
     
 #出題する関数
 def quiz():  
