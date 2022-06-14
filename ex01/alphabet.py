@@ -1,10 +1,10 @@
 import random
 import datetime
 global ob_alpha, los_alpha
-
-ob_alpha = 9
-los_alpha = 2
-num_try = 5
+    
+ob_alpha = 9   #対象文字数
+los_alpha = 2  #欠損文字数
+num_try = 5    #最大試行回数
 
 def main():
     for number in range(num_try):
@@ -14,9 +14,9 @@ def main():
         if hantei == 1:
             print("完全正解！. おめでとう！")
             break
-        #pro_time()
+        pro_time()
 
-
+#出題する関数
 def quiz():
     alphabet = [chr(num+65) for num in range(26)]
     alphabets = random.sample(alphabet, ob_alpha)
@@ -38,6 +38,7 @@ def quiz():
 
     return los_alphabets
 
+#解答する関数
 def ans(seikai):
     num = int(input("\n欠損文字はいくつあるでしょうか？："))
     if num != los_alpha:
@@ -54,10 +55,11 @@ def ans(seikai):
                 continue
                 return 1
 
+#時間を測定する関数
 def pro_time():
-    start = time.time()
-    ans()
-    end = time.time()
+    start = datetime.now()
+    main()
+    end = datetime.now()
     print(end - start)
 
 if __name__ == "__main__":
