@@ -17,7 +17,7 @@ def main():
         pro_time()
     
 #出題する関数
-def quiz():
+def quiz():  
     alphabet = [chr(num+65) for num in range(26)]
     alphabets = random.sample(alphabet, ob_alpha)
     print("対象文字：")
