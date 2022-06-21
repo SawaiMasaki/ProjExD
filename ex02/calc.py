@@ -31,12 +31,12 @@ if __name__ == "__main__":
     c = 0
 
     #ボタンの生成
-    for i, num in enumerate(["","**", "%", "C", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+", "00", 0, ".", "="]):
+    for i, num in enumerate(["","**", "%", "C", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+", "00", 0, ".", "="]):  #ボタンの文字
         button = tk.Button(root, 
-                            font=("Times New Roman", 30),
+                            font=("Times New Roman", 30), #ボタンの文字の大きさ
                             text= f"{num}",
                             command=button_click,
-                            bg="white",
+                            bg="white",                   #文字の色
                             width=4,
                             height=2)
         if num in symbol:       #演算記号のボタンの色の変更
