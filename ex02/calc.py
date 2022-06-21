@@ -25,10 +25,12 @@ if __name__ == "__main__":
     root.title("電卓")
     #root.geometry("300x600")
 
-    symbol = ["", "**", "%", "C", "*", "-", "+"]
+    symbol = ["", "**", "%", "C", "*", "-", "+"]       #演算記号のリスト
     
     r = 1
     c = 0
+
+    #ボタンの生成
     for i, num in enumerate(["","**", "%", "C", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+", "00", 0, ".", "="]):
         button = tk.Button(root, 
                             font=("Times New Roman", 30),
@@ -37,7 +39,7 @@ if __name__ == "__main__":
                             bg="white",
                             width=4,
                             height=2)
-        if num in symbol:
+        if num in symbol:       #演算記号のボタンの色の変更
             button = tk.Button(root, 
                             font=("Times New Roman", 30),
                             text= f"{num}",
@@ -45,7 +47,7 @@ if __name__ == "__main__":
                             width=4,
                             height=2)
 
-        elif num == "=":
+        elif num == "=":        #＝ボタンの色の変更
             button = tk.Button(root, 
                             font=("Times New Roman", 30),
                             text= f"{num}",
@@ -57,7 +59,7 @@ if __name__ == "__main__":
         button.bind("<1>", button_click)              
         button.grid(row=r, column=c)
         c += 1
-        if (i+1)%4 == 0:
+        if (i+1)%4 == 0:   #電卓の横のボタンの数
             r += 1
             c = 0
 
