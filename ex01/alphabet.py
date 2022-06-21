@@ -7,15 +7,15 @@ los_alpha = 2  #欠損文字数
 num_try = 5    #最大試行回数
 
 def main():
-    for number in range(num_try):
+    start = datetime.datetime.now()
+    for i in range(num_try):
         seikai = quiz()
-        ans(seikai)
-        hantei = ans(seikai)
-        if hantei == 1:
+        if ans(seikai) == 0:
             print("完全正解！. おめでとう！")
+            end = datetime.datetime.now()
+            print(f"{(end - start).seconds}秒です")
             break
-        pro_time()  
-    
+
 #出題する関数
 def quiz():  
     alphabet = [chr(num+65) for num in range(26)]
@@ -24,15 +24,16 @@ def quiz():
     for i in alphabets:
         print(i, end=" ")
 
-    print("\n欠損文字：")
+    #print("\n欠損文字：")
     los_alphabets = random.sample(alphabets, los_alpha)
-    for j in los_alphabets:
-        print(j, end=" ")
+    #for j in los_alphabets:
+    #    print(j, end=" ")
 
     print("\n表示文字：")
     for k in los_alphabets:
         alphabets.remove(k)
 
+    random.shuffle(alphabets)
     for l in alphabets:
         print(l, end=" ")
 
@@ -40,6 +41,7 @@ def quiz():
 
 #解答する関数
 def ans(seikai):
+    flag = 0
     num = int(input("\n欠損文字はいくつあるでしょうか？："))
     if num != los_alpha:
         print("不正解です.")
@@ -50,17 +52,9 @@ def ans(seikai):
             ans = input(f"{1+i}つ目の文字を入力してください：")
             if ans not in seikai:
                 print("不正解です.またチャレンジしてください")
-                return 0
-            else:
-                continue
-                return 1
-
-#時間を測定する関数
-def pro_time():
-    start = datetime.now()
-    main()
-    end = datetime.now()
-    print(end - start)
+                flag = 1
+                break
+    return flag       
 
 if __name__ == "__main__":
     main()
