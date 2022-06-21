@@ -1,7 +1,7 @@
 import tkinter as tk
 import tkinter.messagebox as tkm
 
-#ボタンがクリックされた時の処理
+#ボタンがクリックされた時の処理 
 def button_click(event):
     btn = event.widget
     txt = btn["text"]   #ボタンの文字
