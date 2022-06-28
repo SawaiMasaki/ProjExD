@@ -1,3 +1,4 @@
+from itertools import count
 import tkinter
 import tkinter.messagebox as tkm
 import maze_maker
@@ -16,6 +17,7 @@ def key_up(event):
 #各キーが押された時の動作
 def main_proc():
     global cx, cy, mx, my
+    count = 1
     if key == "Up" and maze[my-1][mx] == 0:
         my -= 1
     elif key == "Down" and maze[my+1][mx] == 0:
@@ -30,16 +32,20 @@ def main_proc():
         cx, cy = mx*100+50, my*100+50
 #警告メッセージの動作
     if key == "Up" and maze[my-1][mx] == 1:
-        tkm.showwarning("警告", "大丈夫ですか？？？？？？")
+        tkm.showwarning(f"警告{count}回目", "大丈夫ですか？？？？？？")
+        count += 1
 
     elif key == "Down" and maze[my+1][mx] == 1:
-        tkm.showwarning("警告", "大丈夫ですか？？？？？？")
+        tkm.showwarning(f"警告{count}回目", "大丈夫ですか？？？？？？")
+        count += 1
 
     elif key == "Left" and maze[my][mx-1] == 1:
-        tkm.showwarning("警告", "大丈夫ですか？？？？？？")
+        tkm.showwarning(f"警告{count}回目", "大丈夫ですか？？？？？？")
+        count += 1
 
     elif key == "Right" and maze[my][mx+1] == 1:
-        tkm.showwarning("警告", "大丈夫ですか？？？？？？")
+        tkm.showwarning(f"警告{count}回目", "大丈夫ですか？？？？？？")
+        count += 1
 
     cx, cy = mx*100+50, my*100+50
     canvas.coords("tori", cx, cy)
