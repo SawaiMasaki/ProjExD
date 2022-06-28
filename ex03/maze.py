@@ -14,18 +14,18 @@ def key_up(event):
 def main_proc():
     global cx, cy, mx, my
 
-    if key == "Up" and maze[my-1][mx]:
+    if key == "Up" and maze[my-1][mx] == 0:
         my -= 1
-    if key == "Down" and maze[my+1][mx]:
+    elif key == "Down" and maze[my+1][mx] == 0:
         my += 1
-    if key == "Left" and maze[my][mx+1]:
+    elif key == "Left" and maze[my][mx-1] == 0:
         mx -= 1
-    if key == "Right" and maze[my][mx-1]:
+    elif key == "Right" and maze[my][mx+1] == 0:
         mx += 1
 
-    cx, cy = mx*100+50, mx*100+50
+    cx, cy = mx*100+50, my*100+50
     canvas.coords("tori", cx, cy)
-    root.after(100, main_proc)        
+    #root.after(100, main_proc)        
 
 if __name__ == "__main__":
     root = tkinter.Tk()
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     tori = tkinter.PhotoImage(file="fig/9.png")
 
     mx, my = 1, 1
-    cx, cy = mx*100+50, mx*100+50
+    cx, cy = mx*100+50, my*100+50
 
     canvas.create_image(cx, cy, image=tori, tag="tori")
 
