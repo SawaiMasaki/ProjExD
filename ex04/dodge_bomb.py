@@ -1,9 +1,13 @@
 import pygame as pg
+import tkinter as tk
 import sys
 import random
+import datetime
 
 def main():
+    start = datetime.datetime.now()
     clock = pg.time.Clock()
+    #スクリーン
     pg.display.set_caption("逃げろ！こうかとん")
     window_sfc = pg.display.set_mode((1600, 900))
     window_rect = window_sfc.get_rect()
@@ -24,7 +28,7 @@ def main():
     #爆弾
     bm_sfc = pg.Surface((20, 20))
     bm_sfc.set_colorkey((0, 0, 0))
-    pg.draw.circle(bm_sfc, (255, 0, 0), (10, 10), 10)
+    pg.draw.circle(bm_sfc, (255, 0, 0), (10, 10))
     bm_rect = bm_sfc.get_rect()
     bm_rect.centerx = random.randint(0, window_rect.width)
     bm_rect.centery = random.randint(0, window_rect.height)
@@ -33,41 +37,63 @@ def main():
     while(True):
         window_sfc.blit(bg_sfc, bg_rect)
         window_sfc.blit(tori_sfc, tori_rect)
+        window_sfc.blit(bm_sfc, bm_rect)
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
+            if event.type == pg.KEYDOWN and event.key == pg.K_a:
+                vx *= 1.2
+                vy *= 1.2
+            if event.type == pg.KEYDOWN and event.key == pg.K_r:
+                vx = 1
+                vy = 1
 
+        #こうかとんの操作
         key_list = pg.key.get_pressed()
-        if key_list[pg.K_UP] == True:
+        if key_list[pg.K_UP]:
             tori_rect.centery -= 1
             if tori_rect.centery < 50:
                 tori_rect.centery += 1
 
-        if key_list[pg.K_DOWN] == True:
+        if key_list[pg.K_DOWN]:
             tori_rect.centery += 1
             if tori_rect.centery > 850:
                 tori_rect.centery -= 1
 
-        if key_list[pg.K_LEFT] == True:
+        if key_list[pg.K_LEFT]:
             tori_rect.centerx -= 1
             if tori_rect.centerx < 50:
                 tori_rect.centerx += 1
 
-        if key_list[pg.K_RIGHT] == True:
+        if key_list[pg.K_RIGHT]:
             tori_rect.centerx += 1
             if tori_rect.centerx > 1550:
                 tori_rect.centerx -= 1
         window_sfc.blit(tori_sfc, tori_rect)
 
         bm_rect.move_ip(vx, vy)
+        #爆弾が壁と接触した時の処理
         if bm_rect.centerx > 1600 or bm_rect.centerx < 0:
             vx *= -1
         if bm_rect.centery > 900 or bm_rect.centery < 0:
-            vy *= -1    
-        window_sfc.blit(bm_sfc, bm_rect)
+            vy *= -1
 
-        if tori_rect.colliderect(bm_rect) == True:
+
+        
+
+        #爆弾と接触した時の処理
+        if tori_rect.colliderect(bm_rect):
+            end = datetime.datetime.now()
+            root = tk.Tk()
+            root.geometry("300x50")
+            root.title("ゲームオーバー")
+            label = tk.Label(root,
+                            text=f"{(end - start).seconds}秒生き残りました",
+                            font=("Ricty Diminished", 20),
+                            justify="center")
+            label.pack()
+            root.mainloop()
             return
 
         pg.display.update()
