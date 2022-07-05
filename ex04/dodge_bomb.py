@@ -28,7 +28,7 @@ def main():
     bm_rect = bm_sfc.get_rect()
     bm_rect.centerx = random.randint(0, window_rect.width)
     bm_rect.centery = random.randint(0, window_rect.height)
-
+    vx, vy = +1, +1
     
     while(True):
         window_sfc.blit(bg_sfc, bg_rect)
@@ -60,6 +60,11 @@ def main():
                 tori_rect.centerx -= 1
         window_sfc.blit(tori_sfc, tori_rect)
 
+        bm_rect.move_ip(vx, vy)
+        if bm_rect.centerx > 1600 or bm_rect.centerx < 0:
+            vx *= -1
+        if bm_rect.centery > 900 or bm_rect.centery < 0:
+            vy *= -1    
         window_sfc.blit(bm_sfc, bm_rect)
 
         pg.display.update()
