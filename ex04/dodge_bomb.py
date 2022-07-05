@@ -85,7 +85,7 @@ def main():
         pg.display.update()
         clock.tick(1000)
 
-def time_msg():
+def time_msg(): 
             end = datetime.datetime.now()
             root = tk.Tk()
             root.geometry("300x50")
@@ -99,7 +99,7 @@ def time_msg():
 
 if __name__ == "__main__":
     pg.init()
-    start = datetime.datetime.now()
+    start = datetime.datetime.now() 
     main()
     time_msg()
     pg.quit()
