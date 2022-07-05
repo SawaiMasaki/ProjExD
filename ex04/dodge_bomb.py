@@ -5,7 +5,6 @@ import random
 import datetime
 
 def main():
-    start = datetime.datetime.now()
     clock = pg.time.Clock()
     #スクリーン
     pg.display.set_caption("逃げろ！こうかとん")
@@ -28,7 +27,7 @@ def main():
     #爆弾
     bm_sfc = pg.Surface((20, 20))
     bm_sfc.set_colorkey((0, 0, 0))
-    pg.draw.circle(bm_sfc, (255, 0, 0), (10, 10))
+    pg.draw.circle(bm_sfc, (255, 0, 0), (10, 10),10)
     bm_rect = bm_sfc.get_rect()
     bm_rect.centerx = random.randint(0, window_rect.width)
     bm_rect.centery = random.randint(0, window_rect.height)
@@ -79,11 +78,14 @@ def main():
         if bm_rect.centery > 900 or bm_rect.centery < 0:
             vy *= -1
 
-
-        
-
         #爆弾と接触した時の処理
         if tori_rect.colliderect(bm_rect):
+            return
+
+        pg.display.update()
+        clock.tick(1000)
+
+def time_msg():
             end = datetime.datetime.now()
             root = tk.Tk()
             root.geometry("300x50")
@@ -94,14 +96,11 @@ def main():
                             justify="center")
             label.pack()
             root.mainloop()
-            return
-
-        pg.display.update()
-        clock.tick(1000)
-
 
 if __name__ == "__main__":
     pg.init()
+    start = datetime.datetime.now()
     main()
+    time_msg()
     pg.quit()
     sys.exit()
