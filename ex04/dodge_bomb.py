@@ -41,10 +41,10 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return
-            if event.type == pg.KEYDOWN and event.key == pg.K_a:
+            if event.type == pg.KEYDOWN and event.key == pg.K_a:  #Aを押すと爆弾が加速する
                 vx *= 1.2
                 vy *= 1.2
-            if event.type == pg.KEYDOWN and event.key == pg.K_r:
+            if event.type == pg.KEYDOWN and event.key == pg.K_r:  #Rを押すと爆弾の速度がリセットされる
                 vx = 1
                 vy = 1
 
