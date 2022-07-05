@@ -41,22 +41,22 @@ def main():
         key_list = pg.key.get_pressed()
         if key_list[pg.K_UP] == True:
             tori_rect.centery -= 1
-            if tori_rect.centery < 0:
+            if tori_rect.centery < 50:
                 tori_rect.centery += 1
 
         if key_list[pg.K_DOWN] == True:
             tori_rect.centery += 1
-            if tori_rect.centery > 900:
+            if tori_rect.centery > 850:
                 tori_rect.centery -= 1
 
         if key_list[pg.K_LEFT] == True:
             tori_rect.centerx -= 1
-            if tori_rect.centerx < 0:
+            if tori_rect.centerx < 50:
                 tori_rect.centerx += 1
 
         if key_list[pg.K_RIGHT] == True:
             tori_rect.centerx += 1
-            if tori_rect.centerx > 1600:
+            if tori_rect.centerx > 1550:
                 tori_rect.centerx -= 1
         window_sfc.blit(tori_sfc, tori_rect)
 
@@ -66,6 +66,9 @@ def main():
         if bm_rect.centery > 900 or bm_rect.centery < 0:
             vy *= -1    
         window_sfc.blit(bm_sfc, bm_rect)
+
+        if tori_rect.colliderect(bm_rect) == True:
+            return
 
         pg.display.update()
         clock.tick(1000)
