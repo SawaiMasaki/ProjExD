@@ -152,8 +152,9 @@ def main():
         pg.display.update()
         clock.tick(1000)
 
+#時間の測定
 def time_msg(): 
-            end = datetime.datetime.now()
+            end = datetime.datetime.now()  #終了時間の測定
             root = tk.Tk()
             root.geometry("300x50")
             root.title("勝利！")
@@ -167,7 +168,7 @@ def time_msg():
 
 if __name__ == "__main__":
     pg.init()
-    start = datetime.datetime.now()
+    start = datetime.datetime.now()  #開始時間の測定
     main()
     time_msg()
     pg.quit()
